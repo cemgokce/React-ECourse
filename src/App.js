@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound"
 import Layout from "./components/Layout/Layout"
 import CourseDetailPage from "./pages/CourseDetailPage";
 import CoursesByCategoryId from './pages/CoursesByCategoryId'
+import CoursesBySearhKey from './pages/CoursesBySearhKey'
 import AuthForm from './components/Auth/AuthForm'
 
 
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path='/course/:id/category'>
             <CoursesByCategoryId />
+          </Route>
+          <Route path='/course/:id/search'>
+            <CoursesBySearhKey />
           </Route>
           <Route path='/auth'>
             <AuthForm />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import classes from "./MainHeader.module.css"
 import { Link } from "react-router-dom"
 import { BsSearch } from 'react-icons/bs'
@@ -6,7 +6,11 @@ import { IconContext } from 'react-icons';
 
 function MainHeader() {
 
+    const searchInputRef = useRef();
+
     const [categories, setCategories] = useState([]);
+
+    const [searchKey, setSearchKey] = useState('');
 
     const getCategories = async () => {
         const response = await fetch("http://localhost:5000/categories");
@@ -15,8 +19,15 @@ function MainHeader() {
         console.log("from-getCourse", data);
     }
 
+    const searchKeyHandler = (event) => {
+        event.preventDefault();
+        setSearchKey(event.target.value);
+        console.log(event.target.value);
+    }
+
     useEffect(() => {
         getCategories();
+        //console.log(searchInputRef.current.value)
     }, [])
 
     return (
@@ -28,19 +39,21 @@ function MainHeader() {
                     <button className={classes.dropbtn}>Categories</button>
                     <div className={classes.dropdownContent}>
                         {categories.map((category) => (
-                            <Link to={`/course/${category.id}/category`}>{category.name}</Link>
+                            <Link to={`/course/${category.id}/category`} key={category.id}>{category.name}</Link>
                         ))}
 
                     </div>
                 </div>
 
                 <div className={classes.search}>
-                    <input className={classes.searchInput} type='text' placeholder='Search' />
-                    <button className={classes.searhButton}>
+                    <input className={classes.searchInput} type='text' onChange={searchKeyHandler} placeholder='Search' />
+                    <span className={classes.searchButton}>
+                    <Link to={`/course/${searchKey}/search`}>
                         <IconContext.Provider value={{ color: "white" }}>
                             <BsSearch />
                         </IconContext.Provider>
-                    </button>
+                    </Link>
+                    </span>
                 </div>
                 <nav>
 

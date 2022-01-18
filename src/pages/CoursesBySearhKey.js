@@ -11,16 +11,15 @@ function CoursePage() {
 
 
     const getCourse = async () => {
-        const response = await fetch(`http://localhost:5000/courses/search/${id}`);
+        const response = await fetch(`http://localhost:5000/courses/${id}/search`);
         const data = await response.json();
-        setCourses(data.courseCategories);
+        setCourses(data);
         setIsLoading(false);
-        console.log("from-getCourse", data.courseCategories);
+        console.log("from-getCourseBySearchKey", data);
     }
 
     useEffect(() => {
         getCourse();
-
     }, [])
 
 
@@ -29,12 +28,12 @@ function CoursePage() {
             {isLoading ? (<p>Loading</p>) : (
                 <div className="bootstrap container" >
                     <div className="card-list">
-                        {courses.map((item) => (
+                        {courses.map((course) => (
                             <Course
-                                key={item.course.id}
-                                id={item.course.id}
-                                name={item.course.name}
-                                description={item.course.description}
+                                key={course.id}
+                                id={course.id}
+                                name={course.name}
+                                description={course.description}
                             />
                         ))}
                     </div>
