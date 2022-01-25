@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Course from '../components/Course/Course'
+import Course from '../components/Course/Course/Course'
 
 function CoursePage() {
     const [courses, setCourses] = useState([]);
@@ -8,7 +8,6 @@ function CoursePage() {
         const response = await fetch("http://localhost:5000/courses");
         const data = await response.json();
         setCourses(data);
-        console.log("from-getCourse", data);
     }
 
     useEffect(() => {

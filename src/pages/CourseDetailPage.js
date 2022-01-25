@@ -1,11 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CourseDetail from "../components/Course/CourseDetail";
+import CourseDetail from "../components/Course/CourseDetail/CourseDetail";
 
 function CourseDetailPage() {
     const params = useParams();
     const { id } = params;
-    console.log(id);
     const [course, setCourse] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -18,8 +17,7 @@ function CourseDetailPage() {
     };
     useEffect(() => {
         getCourse();
-        console.log(course);
-    }, []);
+    }, [id]);
 
     return (
         <Fragment>

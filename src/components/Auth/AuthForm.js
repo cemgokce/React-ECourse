@@ -11,15 +11,21 @@ const AuthForm = () => {
     const passwordInputRef = useRef();
     const firstNameInputRef = useRef();
     const lastNameInputRef = useRef();
+    const [radioTeacher, setRadioTeacher] = useState(false)
+
 
     const authCtx = useContext(AuthContext);
 
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
-    const switchAuthModeHandler = () => {
+    const switchAuthModelHandler = () => {
         setIsLogin((prevState) => !prevState);
     };
+    const radioHandler = () => {
+        setRadioTeacher(!radioTeacher)
+        console.log(radioTeacher)
+    }
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -27,9 +33,11 @@ const AuthForm = () => {
         const enteredPassword = passwordInputRef.current.value;
         let enteredFirstName;
         let enteredLastName;
+        let enteredroleStatus;
         if (!isLogin) {
             enteredFirstName = firstNameInputRef.current.value;
             enteredLastName = lastNameInputRef.current.value;
+            enteredroleStatus = radioTeacher
         }
 
         setIsLoading(true);
@@ -49,9 +57,6 @@ const AuthForm = () => {
                 .then((res) => {
                     setIsLoading(false);
                     if (res.ok) {
-                        //..
-                        console.log(1);
-                        console.log(res.json);
                         return res.json();
                     } else {
                         return res.json().then((data) => {
@@ -66,10 +71,9 @@ const AuthForm = () => {
                     }
                 })
                 .then((data) => {
-                    console.log(2);
                     console.log(data.token);
                     authCtx.login(data.token);
-                    history.replace("/");
+                    history.replace('/')
                 })
                 .catch((err) => {
                     alert(err.message);
@@ -83,6 +87,7 @@ const AuthForm = () => {
                     password: enteredPassword,
                     firstName: enteredFirstName,
                     lastName: enteredLastName,
+                    rolestatus: enteredroleStatus
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -96,13 +101,14 @@ const AuthForm = () => {
                     } else {
                         return res.json().then((data) => {
                             let errorMessage = "Authentication Failed";
-                            // }
+
                             throw new Error(errorMessage);
                         });
                     }
                 })
                 .then((data) => {
                     history.replace("/auth");
+
                     setIsLogin(true);
                 })
                 .catch((err) => {
@@ -135,6 +141,7 @@ const AuthForm = () => {
                                 ref={lastNameInputRef}
                             />
                         </div>
+
                     </div>
                 ) : null}
                 <div className={classes.control}>
@@ -155,6 +162,17 @@ const AuthForm = () => {
                         ref={passwordInputRef}
                     />
                 </div>
+                {!isLogin ?
+                    (
+                        <div className={classes.controlCheckbox}>
+                            <label className={{ display: 'none' }} htmlFor="radio">Do you wanna be teacher :</label>
+                            <input
+                                type="checkbox"
+                                checked={radioTeacher}
+                                onChange={radioHandler}
+                            />
+                        </div>
+                    ) : null}
                 <div className={classes.actions}>
                     {!isLoading && (
                         <button>{isLogin ? "Login" : "Create Account"}</button>
@@ -163,13 +181,14 @@ const AuthForm = () => {
                     <button
                         type="button"
                         className={classes.toggle}
-                        onClick={switchAuthModeHandler}
+                        onClick={switchAuthModelHandler}
                     >
                         {isLogin
                             ? "Create new account"
                             : "Login with existing account"}
                     </button>
                 </div>
+
             </form>
         </section>
     );

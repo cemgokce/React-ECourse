@@ -1,12 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import classes from "./MainHeader.module.css"
-import { Link } from "react-router-dom"
+import { Link, useHistory, NavLink } from "react-router-dom"
 import { BsSearch } from 'react-icons/bs'
 import { IconContext } from 'react-icons';
+import AuthContext from '../../store/auth-context'
 
 function MainHeader() {
 
-    const searchInputRef = useRef();
+    const history = useHistory();
+    const authCtx = useContext(AuthContext);
+    let userRole = "";
+    if (authCtx.user.role) {
+        userRole = authCtx.user.role;
+    }
+
+
 
     const [categories, setCategories] = useState([]);
 
@@ -16,18 +24,23 @@ function MainHeader() {
         const response = await fetch("http://localhost:5000/categories");
         const data = await response.json();
         setCategories(data);
-        console.log("from-getCourse", data);
+    }
+    const logoutHandler = () => {
+        authCtx.logout();
+        history.push('/')
+    };
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            history.replace(`/course/${searchKey}/search`)
+        }
     }
 
     const searchKeyHandler = (event) => {
-        event.preventDefault();
         setSearchKey(event.target.value);
-        console.log(event.target.value);
     }
 
     useEffect(() => {
         getCategories();
-        //console.log(searchInputRef.current.value)
     }, [])
 
     return (
@@ -39,33 +52,40 @@ function MainHeader() {
                     <button className={classes.dropbtn}>Categories</button>
                     <div className={classes.dropdownContent}>
                         {categories.map((category) => (
-                            <Link to={`/course/${category.id}/category`} key={category.id}>{category.name}</Link>
+                            <NavLink className={classes.dropdownContentLink} to={`/course/${category.id}/category`} key={category.id}>{category.name} </NavLink>
                         ))}
 
                     </div>
                 </div>
 
                 <div className={classes.search}>
-                    <input className={classes.searchInput} type='text' onChange={searchKeyHandler} placeholder='Search' />
+                    <input className={classes.searchInput} type='text' onChange={searchKeyHandler} onKeyUp={handleKeyPress} placeholder='Search' />
                     <span className={classes.searchButton}>
-                    <Link to={`/course/${searchKey}/search`}>
-                        <IconContext.Provider value={{ color: "white" }}>
-                            <BsSearch />
-                        </IconContext.Provider>
-                    </Link>
+                        <Link to={`/course/${searchKey}/search`} replace>
+                            <IconContext.Provider value={{ color: "white" }}>
+                                <BsSearch />
+                            </IconContext.Provider>
+                        </Link>
                     </span>
                 </div>
                 <nav>
-
                     <ul>
-                        <li>
-                            <Link to='/auth'>
-                                <button>Login</button>
-                            </Link>
-                        </li>
-                        <li>
-                            <button>Logout</button>
-                        </li>
+                        {userRole === 'Teacher' ?
+                            <li>
+                                <Link to={`userCourses/teacher`} >Teacher Courses</Link>
+                            </li> : null}
+
+                        {!authCtx.isLoggedIn ?
+                            <li>
+                                <Link to='/auth'>
+                                    <button>Login</button>
+                                </Link>
+                            </li> :
+                            <li>
+
+                                <button onClick={logoutHandler}>Logout</button>
+                            </li>
+                        }
                     </ul>
                 </nav>
             </header>

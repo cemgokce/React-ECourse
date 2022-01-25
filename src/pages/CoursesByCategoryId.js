@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import Course from '../components/Course/Course'
+import Course from '../components/Course/Course/Course'
 import { useParams } from "react-router-dom";
 
 function CoursePage() {
@@ -14,13 +14,11 @@ function CoursePage() {
         const data = await response.json();
         setCourses(data.courseCategories);
         setIsLoading(false);
-        console.log("from-getCourse", data.courseCategories);
     }
 
     useEffect(() => {
         getCourse();
-
-    }, [])
+    }, [id])
 
 
     return (

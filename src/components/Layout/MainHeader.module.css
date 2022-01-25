@@ -44,11 +44,10 @@
 .dropdown {
   position: flex;
   color: #c291e2;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
   border: 1px solid white;
   border-radius: 0.5rem;
+
+
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -62,7 +61,7 @@
 }
 
 /* Links inside the dropdown */
-.dropdownContent a {
+.dropdownContentLink {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -70,7 +69,7 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdownContent a:hover {background-color: #f1f1f1}
+.dropdownContent a:hover {background-color: #c291e2}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdownContent {
@@ -146,5 +145,5 @@
 
 .navbar a:hover,
 .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: #c291e2;
 }

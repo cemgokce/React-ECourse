@@ -8,6 +8,7 @@ import CourseDetailPage from "./pages/CourseDetailPage";
 import CoursesByCategoryId from './pages/CoursesByCategoryId'
 import CoursesBySearhKey from './pages/CoursesBySearhKey'
 import AuthForm from './components/Auth/AuthForm'
+import TeacherCourse from './pages/TeacherCourses'
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path='/course/:id/search'>
             <CoursesBySearhKey />
+          </Route>
+          <Route path='/userCourses/teacher'>
+            <TeacherCourse />
           </Route>
           <Route path='/auth'>
             <AuthForm />

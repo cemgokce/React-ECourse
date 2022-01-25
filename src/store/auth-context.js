@@ -17,25 +17,40 @@ export const AuthContextProvider = (props) => {
     if (initialToken) {
 
         initialUser = jwt_decode(initialToken) || {}
+    } else {
+        initialUser = {
+            email: "default",
+            exp: 123456,
+            iat: 123456,
+            role: "Default",
+            uii: 0
+        }
     }
+
 
 
     const [token, setToken] = useState(initialToken)
     const [user, setUser] = useState(initialUser)
+
 
     const userIsLoggedIn = !!token;
 
 
     const logoutHandler = () => {
         setToken(null)
-        setUser(null)
+        setUser({
+            email: "default",
+            exp: 123456,
+            iat: 123456,
+            role: "Default",
+            uii: 0
+        })
         localStorage.removeItem('token')
     }
 
     const loginHandler = (token) => {
         setToken(token)
         setUser(jwt_decode(token))
-
         localStorage.setItem('token', token)
     }
 
