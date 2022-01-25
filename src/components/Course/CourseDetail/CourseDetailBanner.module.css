@@ -1,7 +1,28 @@
-.main {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    border: 5px solid black;
-    margin: 5em 5em;
-  }
+.mainBanner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border: 3px solid #000000;
+  background-color: black;
+  height: 15em;
+}
+.headerContentLeft {
+  flex: 2;
+}
+.headerContentHeader {
+  flex: 5;
+  width: 20rem;
+}
+
+.headerContentHeader h2 {
+  margin: 1rem;
+  font-style: bold;
+  color: white;
+}
+.headerContentHeader p {
+  margin: 1rem;
+  color: white;
+}
+.headerContentRight {
+  flex: 5;
+}

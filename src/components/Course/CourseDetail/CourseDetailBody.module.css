@@ -1,0 +1,33 @@
+.contentCourse {
+  display: flex;
+  flex: column;
+  margin-top: 1.5rem;
+}
+.contentCourseLeft {
+  flex: 2;
+  background-color: blue;
+}
+.contentCourseBody {
+  flex: 5;
+  background-color: red;
+  padding:2rem;
+  border: 5px solid gray;
+}
+.contentCourseBody h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.singleBrief{
+ 
+  margin-left: 1em;
+  
+}
+.allBrief{
+  display: flex;
+  flex-wrap: wrap;  
+  
+}
+.contentCourseRight {
+  flex: 5;
+  background-color: blue;
+}

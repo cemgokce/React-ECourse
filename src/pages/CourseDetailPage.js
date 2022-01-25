@@ -26,10 +26,7 @@ function CourseDetailPage() {
             ) : (
                 <CourseDetail
                     key={course.id}
-                    id={course.id}
-                    name={course.name}
-                    description={course.description}
-                    content={course.content}
+                    course={course}
                 />
             )}
         </Fragment>

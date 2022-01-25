@@ -20,6 +20,7 @@ const Course = (props) => {
                 </div>
             </div>
         </div>
+        
     )
 };
 

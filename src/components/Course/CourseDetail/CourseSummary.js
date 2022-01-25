@@ -1,10 +1,9 @@
 import React from 'react'
 
-function Category() {
+function CourseSummary() {
     return (
         <div></div>
-        div
     )
 }
 
-export default Category
+export default CourseSummary
