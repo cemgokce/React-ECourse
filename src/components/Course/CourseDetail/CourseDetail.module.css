@@ -1,18 +1,14 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  border: 5px solid black;
-  margin: 5em 5em;
+.main{
+  display:flex;
 }
-.header {
-  background-color: lightcyan;
-  display: flex;
+.content{
+  display:flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.description {
-  text-align: center;
+.brief{
+flex:5
 }
+.summary{
+flex:3
+}
+

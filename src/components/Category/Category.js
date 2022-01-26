@@ -2,8 +2,7 @@ import React from 'react'
 
 function Category() {
     return (
-        <div></div>
-        div
+        <div>ABC</div>
     )
 }
 

@@ -14,7 +14,7 @@ function CourseDetailBody(props) {
                 <h2>What will you learn</h2>
                 <div className={classes.allBrief}>
                     {briefs.map(brief => (
-                        <div className={classes.singleBrief}>
+                        <div  key={brief.brief.id} className={classes.singleBrief}>
                             <GoCheck />
                             <span key={brief.brief.id}>{brief.brief.name}</span>
                         </div>

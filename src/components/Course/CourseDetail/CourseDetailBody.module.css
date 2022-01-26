@@ -1,14 +1,16 @@
 .contentCourse {
+  flex: 5;
   display: flex;
   flex: column;
   margin-top: 1.5rem;
+  background-color:white;
 }
 .contentCourseLeft {
   flex: 2;
   background-color: blue;
 }
 .contentCourseBody {
-  flex: 5;
+  flex: 10;
   background-color: red;
   padding:2rem;
   border: 5px solid gray;
@@ -18,16 +20,20 @@
   margin-bottom: 2rem;
 }
 .singleBrief{
- 
+  width: 250px;
+  height:70px;
+  padding:0.5em;
   margin-left: 1em;
+  margin-top:1em;
   
 }
 .allBrief{
   display: flex;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
+  justify-content: space-around;
   
 }
 .contentCourseRight {
-  flex: 5;
+  flex: 3;
   background-color: blue;
 }

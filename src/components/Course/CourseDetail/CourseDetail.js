@@ -1,49 +1,57 @@
-import React from 'react'
-import classes from './CourseDetail.module.css'
-import { BsBasket } from 'react-icons/bs'
-import { useHistory } from 'react-router-dom'
-import CourseDetailBanner from './CourseDetailBanner.js'
-import CourseDetailBody from './CourseDetailBody'
+import React from "react";
+import classes from "./CourseDetail.module.css";
+import CourseDetailBanner from "./CourseDetailBanner.js";
+import CourseDetailBody from "./CourseDetailBody";
+import CourseSummary from "./CourseSummary";
+import CourseContent from "./CourseContent";
 
 function CourseDetail(props) {
+  const {
+    id,
+    name,
+    hour,
+    description,
+    rate,
+    photo,
+    courseBriefs,
+    courseCategories,
+    courseComments,
+    courseContents,
+    coursePrices,
+    courseRates,
+  } = props.course;
 
-    const { id,
-        name,
-        content,
-        description,
-        courseBriefs,
-        courseCategories,
-        courseComments,
-        courseContents,
-        coursePrices,
-        courseRates } = props.course
+  console.log(props.course);
 
-    console.log(props.course)
 
-    const history = useHistory();
-
-    return (
-        <React.Fragment>
-            <CourseDetailBanner name={name} description={description} category={courseCategories[0].category} />
-            <CourseDetailBody courseBriefs={courseBriefs} />
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      <div className={classes.main}>
+        <CourseDetailBanner
+          name={name}
+          description={description}
+          category={courseCategories[0].category}
+        />
+      </div>
+      <div className={classes.content}>
+        <div className={classes.brief}>
+          <CourseDetailBody courseBriefs={courseBriefs} />
+        </div>
+        <div className={classes.summary}>
+          <CourseSummary
+            prices={coursePrices}
+            hour={hour}
+            photo={photo}
+            rate={rate}
+            courseId={id}
+          />
+        </div>
+      </div>
+      <div>
+        <CourseContent contents={courseContents} />
+      </div>
+    </React.Fragment>
+  );
 }
 
-export default CourseDetail
-
-
-// <div className={classes.main}>
-// <div className={classes.header}>
-//     <h1>{name}</h1>
-// </div>
-// <div className={classes.description}>
-//     <p>{description}</p>
-// </div>
-// <div className={classes.content}>
-//     <p>{content}</p>
-// </div>
-// <div>
-//     <button className='btn btn-primary' onClick={() => { history.replace('/course') }}>Go Back</button>
-// </div>
-// </div >
+export default CourseDetail;
