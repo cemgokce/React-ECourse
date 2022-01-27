@@ -1,45 +1,48 @@
-import "./App.css"
-import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import CoursePage from "./pages/CoursePage"
-import NotFound from "./pages/NotFound"
-import Layout from "./components/Layout/Layout"
+import "./App.css";
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import CoursePage from "./pages/CoursePage";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout/Layout";
 import CourseDetailPage from "./pages/CourseDetailPage";
-import CoursesByCategoryId from './pages/CoursesByCategoryId'
-import CoursesBySearhKey from './pages/CoursesBySearhKey'
-import AuthForm from './components/Auth/AuthForm'
-import TeacherCourse from './pages/TeacherCourses'
-
+import CoursesByCategoryId from "./pages/CoursesByCategoryId";
+import CoursesBySearhKey from "./pages/CoursesBySearhKey";
+import AuthForm from "./components/Auth/AuthForm";
+import TeacherCourse from "./pages/TeacherCourses";
+import NewCoursePage from "./pages/NewCoursePage";
 
 function App() {
   return (
     <React.Fragment>
       <Layout>
         <Switch>
-          <Route path='/' exact>
-            <Redirect to='/course' />
+          <Route path="/" exact>
+            <Redirect to="/course" />
           </Route>
-          <Route path='/course' exact>
+          <Route path="/course" exact>
             <CoursePage />
           </Route>
-          <Route path='/course/:id' exact>
+          <Route path="/course/:id" exact>
             <CourseDetailPage />
           </Route>
-          <Route path='/course/:id/category'>
+          <Route path="/course/:id/category">
             <CoursesByCategoryId />
           </Route>
-          <Route path='/course/:id/search'>
+          <Route path="/course/:id/search">
             <CoursesBySearhKey />
           </Route>
-          <Route path='/userCourses/teacher'>
+          <Route path="/userCourses/teacher">
             <TeacherCourse />
           </Route>
-          <Route path='/auth'>
+          <Route path="/newCourse">
+            <NewCoursePage />
+          </Route>
+          <Route path="/auth">
             <AuthForm />
           </Route>
-          <Route path='*'>
+          <Route path="*">
             <NotFound />
-          </Route >
+          </Route>
         </Switch>
       </Layout>
     </React.Fragment>

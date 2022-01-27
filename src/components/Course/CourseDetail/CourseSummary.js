@@ -63,7 +63,7 @@ function CourseSummary(props) {
         <div className={classes.contentSummary}>
           <h4>This course Contains</h4>
           <span>
-            <AiOutlineCheck /> This Course {hour} hour
+            <AiOutlineCheck /> This course {hour} hour
           </span>
           <span>
             <AiOutlineCheck /> All life accessibility
@@ -73,7 +73,7 @@ function CourseSummary(props) {
           </span>
         </div>
       </div>
-      <div className={classes.rightContent}>SAĞ TARAF</div>
+      <div className={classes.rightContent}></div>
     </div>
   );
 }

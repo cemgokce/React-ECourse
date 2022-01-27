@@ -7,13 +7,11 @@
 }
 .contentCourseLeft {
   flex: 2;
-  background-color: blue;
 }
 .contentCourseBody {
   flex: 10;
-  background-color: red;
   padding:2rem;
-  border: 5px solid gray;
+  border: 2px solid gray;
 }
 .contentCourseBody h2 {
   text-align: center;
@@ -35,5 +33,4 @@
 }
 .contentCourseRight {
   flex: 3;
-  background-color: blue;
 }

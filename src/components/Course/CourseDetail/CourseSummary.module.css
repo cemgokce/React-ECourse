@@ -1,5 +1,4 @@
 .main {
-  background-color: purple;
   margin-top: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -10,11 +9,11 @@
   flex: 8;
   display: flex;
   flex-direction: column;
-  background-color: lightcoral;
+  border:2px solid gray;
+  padding:.5rem;
 }
 .rightContent {
   flex: 4;
-  background-color: lightgoldenrodyellow;
 }
 
 .photo {

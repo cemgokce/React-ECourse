@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: yellow;
+  margin: 2rem;  
+  height:100vh;
+}
+
+.header{
+   background-color:purple;
+   text-align: center;
+
+}
+.section{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top:1rem;
+  background-color:blue;
+}
+.section label {
+  margin: 1rem;  
+  margin-left: 15rem;
+  justify-content:flex-end;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.section input {
+  margin: 1rem;
+  justify-content:flex-end;
+  width: 25rem;
+  height:2.5rem;
+}
